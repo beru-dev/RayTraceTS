@@ -2,7 +2,7 @@
   "name": "raytracets",
   "version": "1.0.0",
   "description": "Ray tracer in typescript",
-  "main": "index.js",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "jest"
   },
@@ -18,5 +18,8 @@
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@types/node": "^14.14.31"
   }
 }
