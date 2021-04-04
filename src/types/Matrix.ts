@@ -160,6 +160,7 @@ export const inverse = (matrix: Matrix): Matrix => {
         }
         return invertedMatrix;
     } else {
-        return null;
+        console.log(`${matrix.toString} is not invertible!!!!111!!!1!!!!`)
+        return matrix;
     }
 }

@@ -19,7 +19,7 @@ export class Intersections {
             if(!lowestIntersection && intersection.t >= 0) {
                 lowestIntersection = intersection;
             } else if(Boolean(lowestIntersection) && intersection.t >= 0 && intersection.t < lowestIntersection.t) {
-                 lowestIntersection = intersection;
+                lowestIntersection = intersection;
             }
         });
         if(lowestIntersection) {

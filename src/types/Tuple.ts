@@ -105,3 +105,7 @@ export const cross = (t1: Tuple, t2: Tuple): Tuple => {
         0
     ];
 }
+
+export const reflect = (approaching: Tuple, normal: Tuple): Tuple => {
+    return subtract(approaching, multScalar(normal, 2 * dot(approaching, normal)));
+}

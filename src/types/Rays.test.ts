@@ -162,6 +162,36 @@ describe("A sphere's default transformation", () => {
     it(`is the identity matrix`, () => expect(compare(s.transform, identity)).toEqual(true));
 });
 
+describe("Changing a sphere's transformation", () => {
+    const s = new Sphere("15");
+    const t = translation(2, 3, 4);
+    s.setTransform(t);
+
+    it(`s's transform = ${t.toString()}`, () => expect(compare(s.transform, t)).toEqual(true));
+});
+
+describe("Intersecting a scaled sphere with a ray", () => {
+    const r = new Ray(point(0, 0, -5), vector(0, 0, 1));
+    const s = new Sphere("16");
+    s.setTransform(scaling(2, 2, 2));
+    const xs = r.intersect(s);
+
+    it(`The number of intersections is 2`, () => expect(xs.list.length).toEqual(2));
+    it(`The first intersection's t value is 3`, () => expect(xs.list[0].t).toEqual(3));
+    it(`The first intersection's t value is 7`, () => expect(xs.list[1].t).toEqual(7));
+});
+
+describe("Intersecting a translated sphere with a ray", () => {
+    const r = new Ray(point(0, 0, -5), vector(0, 0, 1));
+    const s = new Sphere("17");
+    s.setTransform(translation(5, 0, 0));
+    const xs = r.intersect(s);
+
+    it(`The number of intersections is 0`, () => expect(xs.list.length).toEqual(0));
+});
+
 // describe("", () => {
-//     it(``, () => expect().toEqual());
+// it("", () => {
+//     expect().toEqual();
+// });
 // });

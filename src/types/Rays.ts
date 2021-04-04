@@ -1,7 +1,7 @@
 import { Tuple, add, multScalar, subtract, dot, point } from "./Tuple";
 import Sphere from "./Sphere";
 import { Intersection, Intersections } from "./Intersections";
-import { Matrix, dotTuple } from "./Matrix";
+import { Matrix, dotTuple, inverse } from "./Matrix";
 
 class Ray {
     origin: Tuple;
@@ -16,9 +16,10 @@ class Ray {
     }
 
     intersect(sphere: Sphere): Intersections {
-        const sphereToRay = subtract(this.origin, point(0, 0, 0));
-        const a = dot(this.direction, this.direction);
-        const b = 2 * dot(this.direction, sphereToRay);
+        const ray2 = this.transform(inverse(sphere.transform));
+        const sphereToRay = subtract(ray2.origin, point(0, 0, 0));
+        const a = dot(ray2.direction, ray2.direction);
+        const b = 2 * dot(ray2.direction, sphereToRay);
         const c = dot(sphereToRay, sphereToRay) - 1;
         const discriminant = (b * b) - (4 * a * c);
         if(discriminant < 0) return new Intersections();
